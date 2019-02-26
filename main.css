@@ -1,0 +1,219 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+
+body {
+    text-align: center;
+    background-size: 100% !important;
+    background-repeat: no-repeat;
+    background-color: #ffffff;
+}
+
+#search_input {
+    width: 90%;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    outline: 0;
+    font-size: 16px;
+    color: #A593E0;
+    padding: 0 10px;
+    border-radius: 50px
+}
+
+
+.search_part {
+    margin-bottom: 5px;
+    margin-top: 15px;
+}
+
+.search_bar span {
+    display: block;
+    font-size: 12px;
+    overflow: hidden;
+    padding-left: 2px;
+    margin-right: 42px;
+    vertical-align: middle;
+}
+.search_bar span i {
+    display:none;
+    float: right;
+    width: 35px;
+    height: 40px;
+    background-size: 16px;
+}
+.search_bar .si {
+    margin: 0 38px 0 10px;
+}
+
+/*搜索建议条*/
+#suggest {
+    position: absolute;
+    left: -1px;
+    right: -1px;
+    top: 40px;
+    border:1px solid #ccc;
+    background: #fff;
+    line-height: 40px;
+}
+#suggest li {
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+    padding-left: 16px;
+}
+#suggest li:active {
+    background: #F0F0F0;
+}
+#suggest li b {
+    float: right;
+    width: 44px;
+    height: 40px;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAI5JREFUSEtjZCACLF261J6RkbELpPT///9l0dHRB4nQRlgJ0ODny5Yt+w/CIDZhHUSqgBkKo4nURljZqMHwMBohQQFK/ECvnkT3LgX8kyAzGZATPwWGgTMPSiYCGvyEWgYiGfyEAcjxoKaroWZ5EM52QBUjJLkRExajQUH7Qgg5E4HYxMQLUWpgmYiUxA8AOdLMz+iDKvIAAAAASUVORK5CYII=) no-repeat scroll center center #fff;
+    background-size: 11px;
+}
+#suggest .close {
+    text-align: right;
+    font-size: 14px;
+    color: #888;
+    padding-right: 12px;
+}
+
+.search_bar {
+    box-shadow: 0 0 5px rgba(70,70,40,.255);
+    -webkit-animation: fadeIn 2.5s;
+    animation: fadeIn 2.5s;
+    background-color: rgba(255,255,255,.0);
+    border-radius: 3px;
+    display: table;
+    vertical-align: middle;
+    width: 85%;
+    height: 20px;
+    max-width: 400px;
+    margin: 10px auto;
+    position: relative;
+    z-index: 10;
+}
+
+#search_submit {
+    outline: 0;
+    height: 40px;
+    float: right;
+    color: #4a4266;
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+    background-color: transparent;
+    padding: 0 13px 0 13px
+}
+
+
+#content {
+    width: 100%;
+    text-align: center;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+#box1{
+    margin-left:250px;
+    margin-top:30px;
+    padding:10px;
+    width:900px;
+    height:300px;
+    border:1px solid #000000;
+}
+
+#box2{
+    margin-top:50px;
+    margin-left:550px;
+    padding:10px;
+    width:300px;
+    height:200px;
+    background-color: cadetblue;
+    border:1px solid #000000;
+}
+
+#box3{
+    margin-top: -220px;
+    margin-left: 250px;
+    padding:10px;
+    width:200px;
+    height:200px;
+    /*background-image:url('http://p1.img.cctvpic.com/photoworkspace/contentimg/2017/03/06/2017030616205269823.jpg') !important;*/
+    border:1px solid #000000;
+    overflow-y: scroll;
+}
+
+#box4{
+    margin-top:-220px;
+    margin-left:950px;
+    padding:10px;
+    width:200px;
+    height:200px;
+    background-image:url('https://www.huabaike.com/uploads/allimg/sltimg/201612/5847c48187775.jpg') !important;
+    border:1px solid #000000;
+}
+
+.url {
+    color: #4a4266;
+    height: 1.5em;
+    line-height: 1.5em;
+    width: 72px;
+    font-size: 0.75em;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: auto;
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+    padding-top: 0px;
+    padding-bottom: 8px;
+}
+
+.icon {
+    width: 3em;
+    height: 3em;
+    max-width: 72px;
+}
+
+#app-items {
+    width: 100%;
+    max-width: 400px;
+    margin: 0px auto;
+    text-align: center;
+    background-color: #fff;
+    padding-top: 0px;
+    padding-bottom: 15px;
+}
+
+.title {
+    background-color:#ffffff;
+    font-size: 16px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px 0 20px;
+    color: #4a4266;
+
+}
+
+#yiyan {
+    width: 100%;
+    max-width: 400px;
+    margin: 0px auto;
+    text-align: center;
+    background-color: #fff;
+    padding-top: 0px;
+    padding-bottom: 15px;
+}
+
+.shuxing {
+    color: #4a4266;
+    font-size: 12px;
+    height: 30px;
+    line-height: 20px;
+    padding: 0 10px 0 20px;
+}

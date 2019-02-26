@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta content="cn" http-equiv="Content-Language" />
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<meta name="viewport" content="width=device-width, initial-scale=0.9">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+	<link rel="shortcut icon" type="image/x-icon" href="https://citrons-1256634104.cos.ap-shanghai.myqcloud.com/logo.png" media="screen" />
+	<script src="echarts.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+</head>
+<style>
+
+	@-webkit-keyframes flipInX {
+		0% {
+			-webkit-transform: perspective(400px) rotateX(90deg);
+			transform: perspective(400px) rotateX(90deg);
+			opacity: 0
+		}
+
+		40% {
+			-webkit-transform: perspective(400px) rotateX(-10deg);
+			transform: perspective(400px) rotateX(-10deg)
+		}
+
+		70% {
+			-webkit-transform: perspective(400px) rotateX(10deg);
+			transform: perspective(400px) rotateX(10deg)
+		}
+
+		100% {
+			-webkit-transform: perspective(400px) rotateX(0);
+			transform: perspective(400px) rotateX(0);
+			opacity: 1
+		}
+	}
+
+	@keyframes flipInX {
+		0% {
+			-webkit-transform: perspective(400px) rotateX(90deg);
+			-ms-transform: perspective(400px) rotateX(90deg);
+			transform: perspective(400px) rotateX(90deg);
+			opacity: 0
+		}
+
+		40% {
+			-webkit-transform: perspective(400px) rotateX(-10deg);
+			-ms-transform: perspective(400px) rotateX(-10deg);
+			transform: perspective(400px) rotateX(-10deg)
+		}
+
+		70% {
+			-webkit-transform: perspective(400px) rotateX(10deg);
+			-ms-transform: perspective(400px) rotateX(10deg);
+			transform: perspective(400px) rotateX(10deg)
+		}
+
+		100% {
+			-webkit-transform: perspective(400px) rotateX(0);
+			-ms-transform: perspective(400px) rotateX(0);
+			transform: perspective(400px) rotateX(0);
+			opacity: 1
+		}
+	}
+
+	@-webkit-keyframes fadeIn {
+		0% {
+			opacity: 0
+		}
+
+		100% {
+			opacity: 1
+		}
+	}
+
+	@keyframes fadeIn {
+		0% {
+			opacity: 0
+		}
+
+		100% {
+			opacity: 1
+		}
+	}
+
+	@-webkit-keyframes fadeInDown {
+		0% {
+			opacity: 0;
+			-webkit-transform: translateY(-20px);
+			transform: translateY(-20px)
+		}
+
+		100% {
+			opacity: 1;
+			-webkit-transform: translateY(0);
+			transform: translateY(0)
+		}
+	}
+
+	@keyframes fadeInDown {
+		0% {
+			opacity: 0;
+			-webkit-transform: translateY(-20px);
+			-ms-transform: translateY(-20px);
+			transform: translateY(-20px)
+		}
+
+		100% {
+			opacity: 1;
+			-webkit-transform: translateY(0);
+			-ms-transform: translateY(0);
+			transform: translateY(0)
+		}
+	}
+	@media screen and (min-width:1025px){
+		body {
+			text-align: center;
+			background-size: 100% !important;
+			background-repeat: no-repeat;
+			background-color: #ffffff;
+		}
+	}
+
+</style>
+
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+<noscript>
+	<iframe src="*.htm"></iframe>
+</noscript>
+
+<div id="content">
+	<br />
+	<div class="search_part">
+		<br /><br /><br /><br />
+		<p> Mini Search Engine for Nesh</p>
+		<P>                                   </P>
+		<form id="search_form" onsubmit="return search()" class="search_bar">
+			<input type="submit" id="search_submit" value="☯" >
+			<span><i id="clear" onclick="clear_seach()"></i><div class="si"><input class="search" type="text" value="" onkeyup="get_suggest()" onfocus="get_suggest()" onpaste="get_suggest()" autocomplete="off" id="search_input" placeholder="✎...Search Me" ></div>
+</span>
+			<div id="suggest" style="display:none">
+				<ul id="suglist"></ul>
+				<div class="close" onclick="close_sug()">| 收起</div>
+			</div>
+		</form>
+	</div>
+	<br/>
+
+	<div class="box" id="box1">
+	</div>
+
+	<div class="box" id="box2">
+		<table width="100%" border="2" cellpadding="4" cellspacing="1" style="BORDER-COLLAPSE: collapse" borderColor=#000000>
+		</table>
+		<a>text</a>
+	</div>
+
+	<div class="box" id="box3">
+		<!--<table width="100%" border="2" cellpadding="4" cellspacing="1" style="BORDER-COLLAPSE: collapse" borderColor=#000000>-->
+		<!--</table>-->
+		<a>text</a>
+		<!--<a href = "https://www.google.com">google</a>-->
+	</div>
+
+	<div class="box" id="box4">
+		<table width="100%" border="2" cellpadding="4" cellspacing="1" style="BORDER-COLLAPSE: collapse" borderColor=#000000>
+		</table>
+	</div>
+
+	<br>
+	<font color="#303030">
+		<font size="6">―·❀·―</font>
+		<script type="text/javascript">
+            var jsondata={};
+            var last_kw = '';
+            var max_sug_len = 1;
+            getScenemapData("abcd");
+            var companies = ["OXY","COP","APC","APA","COP","PXD"];
+
+            function get_suggest() {
+                var kw = document.getElementById('search_input').value;
+                var clear = document.getElementById('clear');
+                if (kw) clear.style.display = 'block';
+                else clear.style.display = 'none';
+                if (kw == last_kw) return;
+                last_kw = kw;
+                if (!kw || kw.length < max_sug_len) {
+                    close_sug();
+                    return;
+                }
+
+                var script = document.createElement('script');
+                script.type = 'text/javascript';
+                // script.src = 'https://sugs.m.sm.cn/web?t=w&uc_param_str=dnnwnt&scheme=http&fr=android&bid=1&q=' + encodeURIComponent(kw) + '&_=' + new Date().getTime() + '&callback=jsonp3';
+                script.src = "data/stock";
+                var head = document.querySelector('head');
+                // alert(script.src);
+                script.onload = function() {
+                    head.removeChild(script);
+                };
+                head.appendChild(script);
+            }
+
+            // function jsonp3(res) {
+            //     var suggest = document.getElementById('suggest');
+            //     if (!res.r || !res.r.length) {
+            //         suggest.style.display = 'none';
+            //         return;
+            //     }
+            //     var html = '';
+            //     res.r.forEach(function(v) {
+            //         html += '<li>' + v.w + '<b></b></li>';
+            //     });
+            //     document.getElementById('suglist').innerHTML = html;
+            //     suggest.style.display = 'block';
+            // }
+
+            function close_sug() {
+                last_kw = '';
+                document.getElementById('suggest').style.display = 'none';
+            }
+
+            // function move_input() {
+            //     document.body.scrollTop = document.getElementById('search_form').offsetTop - 2;
+            // }
+
+            function clear_seach() {
+                var input = document.getElementById('search_input');
+                input.value = '';
+                document.getElementById('clear').style.display = 'none';
+                close_sug();
+                input.focus();
+            }
+
+            function search(){
+                if(document.getElementById("search_input").value != "")
+                {
+					var company = document.getElementById("search_input").value;
+                    if(companies.indexOf(company) <0){
+                        alert('can not find this company');
+                        return;
+                    }
+					var date = jsondata["OXY"]["stock_price"]["date"];
+					var price = jsondata[company]["stock_price"]["price"];
+					updateChartFir(date,price);
+                    updateChartSec(company);
+                    updateChartThi(company);
+                    // updateChartThi();
+                    // updateChartThi();
+                    document.getElementById("search_input").value = "";
+                }
+                return false;
+            }
+
+            function updateChartSec(name){
+                var market_cap = jsondata[name]["market_cap"];
+                var net_cash_flow = jsondata[name]["net_cash_flow"];
+
+                var box2=document.getElementById("box2");
+                box2.innerText = "";
+                if(market_cap == null){
+                    var txt =document.createTextNode("market_cap: null");
+				}else{
+                    var txt =document.createTextNode("market_cap: "+market_cap.toString());
+				}
+                if(net_cash_flow == null){
+                    var txt_sec =document.createTextNode("net_cash_flow: null");
+                }else{
+                    var txt_sec =document.createTextNode("net_cash_flow: "+net_cash_flow.toString());
+                }
+
+                var br = document.createElement("br");
+                box2.appendChild(br);
+                var br = document.createElement("br");
+                box2.appendChild(br);
+                var br = document.createElement("br");
+                box2.appendChild(br);
+                box2.appendChild(txt);
+                var br = document.createElement("br");
+                box2.appendChild(br);
+                box2.appendChild(txt_sec);
+            }
+
+            function updateChartFir(date, price){
+                var myChart = echarts.init(document.getElementById('box1'));
+                var option = {
+                    xAxis: {
+                        type: 'category',
+                        data: date
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [{
+                        data: price,
+                        type: 'line'
+                    }]
+                };
+                myChart.setOption(option);
+            }
+
+            function updateChartThi(name) {
+                var box3 = document.getElementById("box3");
+                var article = jsondata[name]["article"]["title"]; //16个值
+                var url = jsondata[name]["article"]["url"]; //16个值
+                box3.innerHTML = "";
+
+                for (j=0; j<article.length; j++){
+                    var art = article[j];
+                    var link = url[j];
+                    var linkTmp = document.createElement("a");
+                    linkTmp.href = link;
+                    linkTmp.innerText = art;
+                    linkTmp.class = "superlink";
+                    box3.appendChild(linkTmp);
+                    var br = document.createElement("br");
+                    box3.appendChild(br);
+                    var br = document.createElement("br");
+                    box3.appendChild(br);
+                    var br = document.createElement("br");
+                    box3.appendChild(br);
+				}
+			}
+
+
+            function getScenemapData(name){
+                $.getJSON("stock.json", function (data,status){
+                    if( status=='success'){
+                        jsondata = data;
+                    }else{
+                        console.log("没有读取到本地文件："+status);
+                        return false;
+                    }
+                });
+				return jsondata;
+            }
+
+            // document.getElementById('suglist').addEventListener('click', function(e) {
+            //     var input = document.getElementById('search_input');
+            //     if (e.target.tagName == 'B'){
+            //         input.value = e.target.parentNode.firstChild.textContent;
+            //         input.focus();
+            //     } else if (e.target.tagName == 'LI'){
+            //         input.value = e.target.firstChild.textContent;
+            //         close_sug();
+            //         search();
+            //     }
+            // });
+            // window.addEventListener('resize', move_input);
+		</script>
+
+</body>
+
