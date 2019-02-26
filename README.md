@@ -5,3 +5,4 @@ all_code.ipynb: run the code and show the result of data.
 data.json & stock.json: data we get.
 main.css: web interface
 echarts...: plot the history price of stock
+e.g. you can enter OXY in http://minor-twig.surge.sh/ to see the result.
