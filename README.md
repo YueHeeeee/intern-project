@@ -1,5 +1,5 @@
 # intern-project
-This project is to Scrape information from Nasdaq to present insights about an Oil and Gas company in UI./n
+This project is to Scrape information from Nasdaq to present insights about an Oil and Gas company in UI.
 scraping_code.py: scrape all data we need, including:
                 stock price, stock history, 
                 news titles, news linkes, sentiments polarity,
